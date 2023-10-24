@@ -11,6 +11,7 @@ const btnStyles = cva(['transition-colors'], {
     variant: {
       default: ['bg-secondary', 'hover:bg-secondary-hover'],
       ghost: ['hover:bg-gray-100'],
+      dark: ['bg-secondary-dark', 'hover:bg-secondary-dark-hover', 'text-secondary'],
     },
   },
   defaultVariants: {
