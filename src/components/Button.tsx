@@ -2,7 +2,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { ComponentProps, FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const btnStyles = cva(['transition-colors'], {
+export const btnStyles = cva(['transition-colors'], {
   variants: {
     size: {
       default: ['rounded', 'p-2'],
