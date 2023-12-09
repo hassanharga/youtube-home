@@ -2,6 +2,7 @@ import { ArrowLeft, Bell, Menu, Mic, Search, Upload, User } from 'lucide-react';
 import { useState, type FC } from 'react';
 import Logo from '../assets/Logo.png';
 import Button from '../components/Button';
+import { useSideBarContext } from '../contexts/sidebar.context';
 
 const PageHeader: FC = () => {
   const [showFullScreenSearch, setShowFullScreenSearch] = useState(false);
@@ -9,14 +10,7 @@ const PageHeader: FC = () => {
   return (
     <div className="flex gap-10 lg:gap-20 justify-between pt-2 mb-6 mx-4">
       {/* #region logo & menu icon */}
-      <div className={`flex gap-4 items-center flex-shrink-0 ${showFullScreenSearch ? 'hidden' : 'flex'}`}>
-        <Button size="icon" variant="ghost">
-          <Menu />
-        </Button>
-        <a href="/">
-          <img src={Logo} alt="logo" className="h-6" />
-        </a>
-      </div>
+      <PageHeaderFirstSection hidden={showFullScreenSearch} />
       {/* #endregion */}
       {/* #region notification */}
       {/* #region search */}
@@ -73,3 +67,20 @@ const PageHeader: FC = () => {
 };
 
 export default PageHeader;
+
+type PageHeaderFirstSectionProps = { hidden: boolean };
+
+export const PageHeaderFirstSection = ({ hidden }: PageHeaderFirstSectionProps) => {
+  const { toggle } = useSideBarContext();
+
+  return (
+    <div className={`flex gap-4 items-center flex-shrink-0 ${hidden ? 'hidden' : 'flex'}`}>
+      <Button size="icon" variant="ghost" onClick={toggle}>
+        <Menu />
+      </Button>
+      <a href="/">
+        <img src={Logo} alt="logo" className="h-6" />
+      </a>
+    </div>
+  );
+};
